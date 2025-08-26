@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Selamat Mensive ke-5</title>
+    <style>
+        :root {
+            --bg: #F0F8FF;
+            --accent: #4A90E2;
+            --muted: #6b6b6b;
+            --card: #ffffff;
+            --glass: rgba(255, 255, 255, 0.6);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.4s ease-in-out
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            background: linear-gradient(180deg, var(--bg), #E6F2FA);
+            color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 32px;
+            animation: fadeIn 2s ease-in-out
+        }
+
+/* Notif style */
+    .notif {
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      background: linear-gradient(135deg, #4A90E2, #74B9FF);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+      opacity: 0;
+      transform: scale(0.5);
+      z-index: 1000;
+      animation: popIn 1s ease forwards;
+      animation-delay: 0.6s;
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(20px);
+      }
+
+      60% {
+        opacity: 1;
+        transform: scale(1.2) translateY(-10px);
+      }
+
+      80% {
+        transform: scale(0.9) translateY(5px);
+      }
+
+      100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+    }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-8px)
+            }
+        }
+
+        .frame {
+            width: 100%;
+            max-width: 1100px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), var(--glass));
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 10px 40px rgba(74, 144, 226, 0.12);
+            backdrop-filter: blur(6px);
+            animation: fadeIn 1.2s ease-in-out
+        }
+
+        header {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            animation: float 4s ease-in-out infinite
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent), #8BBFF7);
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+            box-shadow: 0 8px 30px rgba(74, 144, 226, 0.18);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 30px;
+            color: #0B3A6B
+        }
+
+        p.lead {
+            margin: 6px 0 0;
+            color: var(--muted);
+        }
+
+        .card {
+            margin-top: 22px;
+            padding: 18px;
+            border-radius: 14px;
+            background: var(--card);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        .message {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 20px;
+            align-items: start
+        }
+
+        .text {
+            padding: 8px;
+            animation: fadeIn 1.5s ease-in-out
+        }
+
+        .text .msg {
+            font-size: 18px;
+            line-height: 1.6
+        }
+
+        .cta {
+            margin-top: 14px
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--accent), #74B9FF);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.18);
+            transition: transform 0.3s ease-in-out
+        }
+
+        .btn:hover {
+            transform: scale(1.08)
+        }
+
+        /* gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 18px
+        }
+
+        .photo {
+            position: relative;
+            overflow: visible;
+            border-radius: 14px;
+            padding: 8px;
+            background: linear-gradient(180deg, #fff, #fff0);
+            animation: fadeIn 1s ease-in-out
+        }
+
+        /* cute borders variations */
+        .polaroid {
+            background: #fff;
+            padding: 12px;
+            border-radius: 14px;
+            box-shadow: 0 18px 30px rgba(0, 0, 0, 0.12);
+            border: 6px solid #fff;
+        }
+
+        .polaroid img {
+            display: block;
+            border-radius: 10px;
+            width: 100%;
+            height: 180px;
+            object-fit: cover
+        }
+
+        .scallop {
+            border-radius: 18px;
+            padding: 6px;
+            background: linear-gradient(135deg, #fff, #fff7);
+        }
+
+        .scallop img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: inset 0 0 0 6px rgba(74, 144, 226, 0.12)
+        }
+
+        .dashed img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 6px dashed #A9D3F7;
+            padding: 4px;
+            background: linear-gradient(180deg, #fff, #fff6)
+        }
+
+        .heart-wrap {
+            position: relative;
+            border-radius: 18px;
+            padding: 6px;
+            background: linear-gradient(90deg, #fff, #fff2);
+        }
+
+        .heart-wrap img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px
+        }
+
+        .heart-wrap::after {
+            content: '❤';
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            font-size: 22px;
+            opacity: 0.95;
+            color: var(--accent);
+            filter: drop-shadow(0 4px 6px rgba(74, 144, 226, 0.16))
+        }
+
+        .polaroid .caption {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 8px;
+            text-align: center
+        }
+
+        /* fun sticker */
+        .sticker {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            background: linear-gradient(90deg, #fff, #f8fcff);
+            padding: 6px 8px;
+            border-radius: 10px;
+            font-weight: 700;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12)
+        }
+
+        footer {
+            margin-top: 18px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+            animation: fadeIn 2s ease-in-out
+        }
+
+        /* responsive */
+        @media (max-width:880px) {
+            .message {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background music -->
+    <audio id="bg-music" autoplay loop>
+        <source src="Sal Priadi - Kita usahakan rumah itu (Official Lyric Video).mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Notifikasi -->
+  <div id="notif" class="notif">Klik tombol 🎵 untuk mulai musik</div>
+
+    <!-- Tombol play kalau autoplay diblokir -->
+  <div style="position:fixed;bottom:20px;right:20px;z-index:999;">
+    <button id="playBtn"
+      style="padding:10px 16px;border-radius:12px;background:#4A90E2;color:#fff;font-weight:600;border:none;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,.2);">
+      🎵
+    </button>
+  </div>
+  
+  <script>
+ const music = document.getElementById("bg-music");
+    const btn = document.getElementById("playBtn");
+    const notif = document.getElementById("notif");
+
+    // Coba autoplay
+    music.play().then(() => {
+      btn.style.display = "none";
+    }).catch(() => {
+      // Kalau gagal autoplay, tampilkan tombol + notif
+      btn.style.display = "block";
+      setTimeout(() => notif.classList.add("show"), 500);
+    });
+
+    // Saat tombol di klik
+    btn.addEventListener("click", () => {
+      music.play();
+      btn.style.display = "none";
+      notif.style.display = "none";
+    });
+    </script>
+
+    <div class="frame">
+        <header>
+            <div class="logo">Mensive💙</div>
+            <div>
+                <h1>Happy Mensive Yang ke-5 Sayanggg!</h1>
+                <p class="lead"></p>
+            </div>
+        </header>
+
+        <div class="card">
+            <div class="message">
+                <div class="text">
+                    <div class="msg">
+                        <p>happy mensive yang ke 5 yaa sayang ku cintaku manisku, ganyangka ya uda 5 bulan aja, aku
+                            happy banget
+                            karna kita udah bertahan sejauh ini dan suda melewati banyak tantangan, semoga kedepan nya
+                            kita selalu
+                            seperti ini yaa sayangg, terimakasii yaa kamu sudah memberikan semua hal for me, dan
+                            terimakasii juga karna selalu ada
+                            disaat aku butuh heheyy, pokoknyaa makasihh banget untuk semua yang telah kamu lakukann.
+                        </p>
+                        <p style="margin-top:8px;font-style:italic;color:var(--accent)">i love u infinty💙</p>
+                    </div>
+                    <div class="cta">
+                        <a class="btn" href="#gallery">Lihat Galeri Lucu</a>
+                    </div>
+                </div>
+
+                <aside>
+                    <div
+                        style="background:linear-gradient(135deg,#F0F8FF,#FFF);padding:14px;border-radius:12px;animation:fadeIn 2s ease-in-out">
+                        <strong>Detail Mensive</strong>
+                        <p style="margin:6px 0 0;color:var(--muted)"><strong>Tanggal:</strong> 27 agustus 2025</p>
+                        <p style="margin:6px 0 0;color:var(--muted)"><strong>Durasi:</strong> 5 bulan</p>
+                        <div style="margin-top:10px;text-align:center">
+                            <div class="logo" style="width:90px;height:90px;border-radius:12px;font-size:16px">5 Bulan
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <section id="gallery" class="gallery" aria-label="Galeri gambar lucu">
+                <div class="photo polaroid">
+                    <img src="foto ke 1.jpeg">
+                    <div class="caption">Kenangan pertama kita</div>
+                    <div class="sticker">5️⃣</div>
+                </div>
+
+                <div class="photo scallop">
+                    <img src="WhatsApp Image 2025-08-26 at 11.55.56.jpeg" alt="foto lucu 2">
+                </div>
+
+                <div class="photo dashed">
+                    <img src="WhatsApp Image 2025-08-26 at 11.55.57 (1).jpeg" alt="foto lucu 3">
+                </div>
+
+                <div class="photo heart-wrap">
+                    <img src="WhatsApp Image 2025-08-26 at 11.56.08 (1).jpeg" alt="foto lucu 4">
+                </div>
+
+                <div class="photo polaroid">
+                    <img src="WhatsApp Image 2025-08-26 at 11.56.09.jpeg" alt="foto lucu 5">
+                    <div class="caption">Tempat favorit kita</div>
+                    <div class="sticker">💙</div>
+                </div>
+
+                <div class="photo scallop">
+                    <img src="WhatsApp Image 2025-08-26 at 11.56.02.jpeg" alt="foto lucu 6">
+                </div>
+
+                <div class="photo dashed">
+                    <img src="foto ke 7.jpeg" alt="foto lucu 7">
+                </div>
+
+                <div class="photo heart-wrap">
+                    <img src="foto ke2.jpeg" alt="foto lucu 8">
+                </div>
+            </section>
+
+            <footer>
+                <div> THANKK UU SUDA BERSAMA KU SELAMA INIII 💌</div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const d = new Date();
+        const opt = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('date').textContent = d.toLocaleDateString('id-ID', opt);
+    </script>
+    <script>
+  // Countdown ke anniversary selanjutnya: 27 September 2025
+  const nextAnniv = new Date("2025-09-27T00:00:00").getTime();
+  const countdownEl = document.getElementById("countdown");
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const distance = nextAnniv - now;
+
+    if (distance <= 0) {
+      countdownEl.innerHTML = "🎉 Happy Mensive ke-6 Hari Ini! 💙";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownEl.innerHTML = `Menuju mensive ke-6: ${days} hari ${hours} jam ${minutes} menit ${seconds} detik 💙`;
+  }, 1000);
+</script>
+
+</body>
+
+</html>
